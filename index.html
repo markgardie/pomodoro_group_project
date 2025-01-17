@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="Ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro timer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="anime.js"></script>
+</head>
+<body>  
+    <div>
+        <h1> Pomodoro Timer </h1>
+
+        <div class="timer">
+            <div class="circle">
+                <span id="minutes">00</span>:<span id="seconds">00</span>
+            </div>
+            <svg class="progress-circle" width="120" height="120"></svg>
+
+        </div>
+        <div class="control">
+            <button class="start" id="start"> Почати </button>
+            <button class="pause" id="pause"> Пауза </button>
+            <button class="reset" id="reset"> Скинути </button>
+        </div>
+        <div></div>
+        <div class="settings">
+            <input type="text" id="worktime" placeholder="Робочий час (1-60 хв, стандартно 25)">
+            <input type="text" id="breaktime" placeholder="Час відпочинку (1-60 хв, стандартно 5)">
+
+        </div>
+        <div class="statistic">
+            <h1> Статистика </h1>
+            <div class="indicators">
+                <div>Закінчені сесії: <span id="completedSessions">0</span></div>
+                <div>Весь час роботи: <span id="totalWorkTime">0</span></div>
+            </div>
+        </div>
+
+    
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
