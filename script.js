@@ -21,3 +21,68 @@ let timerId = null;
 let isWorkTime = true;
 let completedSessions = parseInt(localStorage.getItem('completedSessions')) || 0;
 let totalWorkTime = parseInt(localStorage.getItem('totalWorkTime')) || 0; 
+
+
+function updateStatistics() {
+    completedSessionsDisplay.textContent = completedSessions
+    totalWorkTimeDisplay.textContent = `${totalWorkTime} хв`
+    localStorage.setItem('completedSessions', completedSessions)
+    localStorage.setItem('totalWorkTime', totalWorkTime)
+}
+
+function updateProgress(timeLeft, totalTime) {
+    const progress = timeLeft / totalTime
+    const offset = CIRCLE_CIRCUMFERENCE * (1 - progress)
+
+    anime( {
+        target: 'progress-ring-circle',
+        strokeDashoffset: offset,
+        easing: 'linear',
+        duration: 1000
+    })
+}
+
+// Форматування часу
+function formatTime(timeInSeconds) {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    return {
+        minutes: minutes.toString().padStart(2, '0'),
+        seconds: seconds.toString().padStart(2, '0')
+    };
+}
+
+// Оновлення дисплею
+function updateDisplay(timeInSeconds) {
+    const { minutes, seconds } = formatTime(timeInSeconds);
+    minutesDisplay.textContent = minutes;
+    secondsDisplay.textContent = seconds;
+} 
+
+function toggleMode() {
+    isWorkTime = !isWorkTime
+
+    if(!isWorkTime) {
+        completedSessions++
+        totalWorkTime += parseInt(workTimeInput.value)
+        updateStatistics()
+    }
+
+    (isWorkTime ? parseInt(workTimeInput.value) : parseInt(breakTimeInput.value)) * 60;
+
+    anime({
+        targets: '.timer-circle',
+        scale: [1.2, 1],
+        duration: 1000,
+        easing: 'easeOutElastic(1, .5)'
+    }); 
+
+    anime({
+    targets: '.progress-ring-circle',
+    stroke: isWorkTime ? '#e74c3c' : '#2ecc71',
+    duration: 500,
+    easing: 'easeInOutQuad'
+}); 
+}
+
+// Зміна кольору прогрес-кільця
