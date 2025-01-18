@@ -8,25 +8,30 @@
     <script src="anime.js"></script>
 </head>
 <body>  
-    <div>
+    <div class="container">
         <h1> Pomodoro Timer </h1>
 
         <div class="timer">
-            <div class="circle">
+            <div class="time">
                 <span id="minutes">00</span>:<span id="seconds">00</span>
             </div>
-            <svg class="progress-circle" width="120" height="120"></svg>
 
+            <div class="progress-ring">
+            <svg id="progress-ring-circle" width="120" height="120" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="50"  stroke="red" stroke-width="7" ></circle>
+            </svg>
+        </div>
         </div>
         <div class="control">
             <button class="start" id="start"> Почати </button>
-            <button class="pause" id="pause"> Пауза </button>
+            <button class="pause" id="pause" disabled="true"> Пауза </button>
             <button class="reset" id="reset"> Скинути </button>
         </div>
-        <div></div>
         <div class="settings">
-            <input type="number" id="worktime" placeholder="Робочий час (1-60 хв, стандартно 25)">
-            <input type="number" id="breaktime" placeholder="Час відпочинку (1-60 хв, стандартно 5)">
+            <label>Робочий час</label>
+            <input type="number" id="worktime" min="1" max="60" value="25" placeholder="Робочий час (1-60 хв, стандартно 25)">
+            <label>Час відпочинку</label>
+            <input type="number" id="breaktime" min="1" max="60" value="5" placeholder="Час відпочинку (1-60 хв, стандартно 5)">
 
         </div>
         <div class="statistic">
