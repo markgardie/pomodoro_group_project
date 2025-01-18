@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="code.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+    <div id="main-container">
+        <!--Заголовок-->
+        <h1>Pomodoro Timer</h1>
+
+        <!--Контейнер таймера-->
+        <div id="timer-container">
+            <div id="timer-circle">
+                <span id="time-display">25:00</span>
+            </div>
+            <svg id="progress-ring" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45"></circle>
+            </svg>
+        </div>
+
+        <!--Панель керування-->
+        <div id="control-panel">
+            <button id="start-button">Почати</button>
+            <button id="pause-button" disabled>Пауза</button>
+            <button id="reset-button">Скинути</button>
+        </div>
+
+        <!--Налаштування-->
+        <div id="settings">
+            <label for="work-time">Робочий час (хв): </label>
+            <input type="number" id="work-time" min="1" max="60" value="25">
+            <label for="break-time">Час відпочинку (хв): </label>
+            <input type="number" id="break-time" min="1" max="30" value="5">
+        </div>
+
+        <!--Статистика-->
+        <div id="statistics">
+            <h2>Статистика</h2>
+            <p>Кількість завершених сесій: <span id="completed-sessions">0</span></p>
+            <p>Загальний час роботи: <span id="total-time">0 хв</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
