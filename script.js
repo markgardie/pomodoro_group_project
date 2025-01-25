@@ -84,3 +84,48 @@ function toggleMode() {
     });
 }
 
+function startTimer() {
+    if (timerID !== null) return
+
+    const totalTime = timeLeft;\
+
+    timerID = setInterval(() => {
+        timeleft--
+        updateDisplay(timeLeft)
+        updateProgress(timeLeft, totalTime)
+        if(timeLeft<=0) {
+            clearInterval(timerID)
+            timerID == null
+            const audio () = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdH2Ff4B7gIZyeXNrb2p0cnh3eHp7gYR/gIGEgH+Eh3+AgoaChoV/g4eMjI+Nj4yQkpOQkpSTlJKSkZAPD4SDhoeJhIaJioiHiomLiouJi4qKi4mJioiKiYeLioeLjIqIiYuKiouJiYqKioqHhw ')
+            audio.play()
+            toggleMode()
+            startTimer()
+        }
+    }, 1000)
+}
+
+// pause timer
+
+// reset timer
+
+function init() {
+    timeLeft = parseInt(workTimeInput.value) * 60
+    updateDisplay(timeLeft)
+    updateStatistics()
+
+    startButton.addEventListener('click', startTimer)
+    pauseButton.addEventListener('click', pausetTimer)
+    resetButton.addEventListener('click', resetTimer)
+
+    workTimeInput.addEventListener('change',() => {
+        timeLeft = parseInt(workTimeInput.value) * 60
+        updateDisplay(timeLeft)
+        updateProgress(timeLeft, timeLeft)
+
+    })
+    breakTimeInput.addEventListener('change',() => {
+        timeLeft = parseInt(breakTimeInput.value) * 60
+        updateDisplay(timeLeft)
+        updateProgress(timeLeft, timeLeft)
+    }
+}
